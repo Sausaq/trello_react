@@ -1,18 +1,50 @@
-function Card({ card }) {
+import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext'; // Import useTheme
+import EditableModal from './EditableModal';
+import './Card.css'; // Import the CSS file for card styles
+
+function Card({ card, onUpdateCard, onDeleteCard }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { theme } = useTheme(); // Get the current theme
+
+  const handleCardClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSave = (editedTitle, editedDescription) => {
+    onUpdateCard(card.id, editedTitle, editedDescription);
+  };
+
   return (
-    <div
-      id={String(card.id)}
-      style={{
-        border: '1px solid #ddd',
-        borderRadius: '4px',
-        padding: '0.5rem',
-        marginBottom: '0.5rem',
-        backgroundColor: '#f9f9f9',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-      <h3 style={{ margin: 0, color: '#555' }}>{card.title}</h3>
-    </div>
+    <>
+      <div className={`card-container ${theme}`} onClick={handleCardClick}>
+        <h3 className="card-title">{card.title}</h3>
+      </div>
+
+      {isModalOpen && (
+        <EditableModal
+          title={card.title}
+          description={card.description}
+          onSave={handleSave}
+          onClose={handleModalClose}
+          onDelete={() => {
+            fetch(`http://localhost:8080/api/cards/${card.id}`, { method: 'DELETE' })
+              .then((res) => {
+                if (res.ok) {
+                  onDeleteCard(card.id); // Notify parent to remove the card
+                } else {
+                  console.error(`Failed to delete card with ID: ${card.id}`);
+                }
+              })
+              .catch((error) => console.error(`Error deleting card with ID: ${card.id}`, error));
+          }}
+        />
+      )}
+    </>
   );
 }
 

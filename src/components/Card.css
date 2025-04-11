@@ -1,0 +1,39 @@
+.card-container {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-container.light {
+  background-color: #ffffff;
+  color: #555;
+}
+
+.card-container.dark {
+  background-color: #2c2c2c;
+  color: #ffffff; /* Make text white in dark mode */
+}
+
+.card-title.light  {
+  margin: 0;
+  color: #333;
+  flex: 1;
+  font-size: 18px;
+  font-family: "Droid Sans Fallback";
+}
+
+.card-title.dark {
+    margin: 0;
+    color: #cfcdcd;
+    flex: 1;
+    font-size: 18px;
+    font-family: "Droid Sans Fallback";
+  }
+  

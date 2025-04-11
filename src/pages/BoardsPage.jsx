@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import Board from '../components/Board'; // Импортируем компонент Board
+import Board from '../components/Board';
+import './BoardsPage.css'; // Import the CSS file for BoardsPage styles
 
 function BoardsPage() {
   const [boards, setBoards] = useState([]);
@@ -30,10 +31,12 @@ function BoardsPage() {
   };
 
   return (
-    <div>
-      <h1>Доски</h1>
-      <button onClick={createBoard}>Создать доску</button>
-      <ul>
+    <div className="boards-page">
+      <h1 className="boards-title">Доски</h1>
+      <button className="create-board-button" onClick={createBoard}>
+        Создать доску
+      </button>
+      <ul className="boards-list">
         {boards.map((board) => (
           <Board key={board.id} board={board} onDelete={deleteBoard} />
         ))}

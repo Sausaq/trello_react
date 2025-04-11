@@ -1,0 +1,117 @@
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff; /* Bright background for better contrast */
+  color: #212529; /* Darker text for better readability */
+  padding: 2rem;
+  border-radius: 12px; /* Softer corners */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+  animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
+}
+
+.modal-container.light {
+  background-color: #ffffff;
+  color: #212529;
+}
+
+.modal-container.dark {
+  background-color: #333333;
+  color: #ffffff; /* Make text white in dark mode */
+}
+
+.modal-container h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #007bff; /* Accent color for the title */
+}
+
+.modal-container label.light {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333; /* Slightly lighter text for labels */
+}
+
+.modal-container label.dark {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #d1d1d1; /* Slightly lighter text for labels */
+  }
+
+  
+.modal-container .modal-input{
+  width: 70%;
+  padding: 0.8rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  border: 1px solid #ced4da; /* Softer border color */
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f8f9fa; /* Light gray background for inputs */
+  color: #212529; /* Dark text for inputs */
+  transition: border-color 0.2s;
+}
+
+.modal-container .modal-input:focus{
+  border-color: #007bff; /* Highlight border on focus */
+  outline: none;
+}
+
+.modal-container .modal-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.modal-container .save-button {
+  background-color: #28a745;
+  color: #fff;
+  margin-right: 0.5rem;
+}
+
+.modal-container .save-button:hover {
+  background-color: #218838;
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.modal-container .close-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.modal-container .close-button:hover {
+  background-color: #c82333;
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.modal-container .delete-button {
+  background-color: #ffc107; /* Warning color for delete */
+  color: #212529;
+  margin-right: 0.5rem;
+}
+
+.modal-container .delete-button:hover {
+  background-color: #e0a800;
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
