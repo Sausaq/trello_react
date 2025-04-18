@@ -77,28 +77,6 @@ function BoardDetailsPage() {
       .catch((error) => console.error('Error updating column:', error));
   };
 
-  // const createCard = (columnId) => {
-  //   const title = prompt('Введите название карточки:');
-  //   const description = prompt('Введите описание карточки:');
-  //   if (title && description) {
-  //     fetch(`http://localhost:8080/api/columns/${columnId}/cards`, {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({ title, description, columnId }),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((newCard) =>
-  //         setColumns((prev) =>
-  //           prev.map((column) =>
-  //             column.id === columnId
-  //               ? { ...column, cards: [...column.cards, newCard] }
-  //               : column
-  //           )
-  //         )
-  //       );
-  //   }
-  // };
-
   const updateCard = (cardId, title, description) => {
     fetch(`http://localhost:8080/api/cards/${cardId}`, {
       method: 'PATCH',
