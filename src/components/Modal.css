@@ -3,8 +3,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff; /* Bright background for better contrast */
-  color: #212529; /* Darker text for better readability */
+  background-color: var(--primary-bg);
+  color: var(--text-color);
   padding: 2rem;
   border-radius: 12px; /* Softer corners */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow for depth */
@@ -27,7 +27,14 @@
 .modal-container h3 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  color: #007bff; /* Accent color for the title */
+  color: var(--primary-color);
+}
+
+.modal-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--text-color);
 }
 
 .modal-container label.light {
@@ -44,22 +51,21 @@
     color: #d1d1d1; /* Slightly lighter text for labels */
   }
 
-  
-.modal-container .modal-input{
+.modal-container .modal-input {
   width: 70%;
   padding: 0.8rem;
   margin-bottom: 2rem;
   margin-left: 2rem;
-  border: 1px solid #ced4da; /* Softer border color */
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 1rem;
-  background-color: #f8f9fa; /* Light gray background for inputs */
-  color: #212529; /* Dark text for inputs */
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
   transition: border-color 0.2s;
 }
 
-.modal-container .modal-input:focus{
-  border-color: #007bff; /* Highlight border on focus */
+.modal-container .modal-input:focus {
+  border-color: var(--primary-color);
   outline: none;
 }
 
@@ -74,8 +80,8 @@
 }
 
 .modal-container .save-button {
-  background-color: #28a745;
-  color: #fff;
+  background-color: var(--success-color);
+  color: var(--text-color);
   margin-right: 0.5rem;
 }
 
@@ -85,8 +91,8 @@
 }
 
 .modal-container .close-button {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: var(--danger-color);
+  color: var(--text-color);
 }
 
 .modal-container .close-button:hover {
@@ -95,6 +101,8 @@
 }
 
 .modal-container .delete-button {
+  background-color: var(--warning-color);
+  color: var(--text-color);
   background-color: #ffc107; /* Warning color for delete */
   color: #212529;
   margin-right: 0.5rem;

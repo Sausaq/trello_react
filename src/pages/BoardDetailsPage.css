@@ -1,6 +1,8 @@
 .board-details-page {
-  display: flex;
+  padding: 20px;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .board-details-page.dark {
@@ -8,15 +10,17 @@
 }
 
 .sidebar {
-  position: fixed; /* Fix the sidebar to the left side */
+  position: fixed;
   top: 0;
   left: 0;
   width: 250px;
-  height: 100%; /* Full height */
-  background-color: #f8f9fa;
-  border-right: 1px solid #ddd;
+  height: 100vh;
+  background-color: var(--secondary-bg);
+  border-right: 1px solid var(--border-color);
   padding: 1rem;
-  overflow-y: auto;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar.dark {
@@ -25,10 +29,10 @@
   border-right: 1px solid #444; /* Adjust border color for dark mode */
 }
 
-.sidebar h2.dark {
+.sidebar h2 {
   margin-bottom: 1rem;
   font-size: 2rem;
-  color: #333;
+  color: var(--text-color);
 }
 
 .sidebar h2.light {
@@ -41,17 +45,20 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .board-item {
   padding: 0.5rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   margin-bottom: 0.5rem;
-  background-color: #fff;
+  background-color: var(--primary-bg);
   cursor: pointer;
-  color: #1a1a1a;
+  color: var(--text-color);
   text-align: center;
+  transition: background-color 0.2s;
 }
 
 .board-item.dark {
@@ -64,71 +71,143 @@
   color: #ffffff;
 }
 
+.board-item:hover {
+  background-color: var(--hover-color);
+}
+
 .board-item.selected {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .main-content {
-    margin-left: 300px;
-    padding: 1rem;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    /* overflow: hidden; отключаем скролл у main */
-    align-items: flex-start;
-  }
-  
-  .main-content.dark {
-    color: #ffffff; /* Make main content text white in dark mode */
-  }
-  
-  .scroll-wrapper {
-    flex: 1;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-  
-  .columns-container {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    padding-bottom: 1rem;
-    min-height: 100%;
-  }
-
+  margin-left: 250px; /* Ensure content starts after the sidebar */
+  width: calc(100% - 250px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+}
 
 .board-header {
-  margin-bottom: 1rem;
+  position: sticky; /* Fix the board title at the top */
+  top: 0;
+  background-color: var(--primary-bg);
+  z-index: 10;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+.board-title {
+  margin: 0;
+  font-size: 24px;
+}
 
-.create-column-button {
-  padding: 0.5rem 1rem;
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-toggle-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
   background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
+  color: white;
   cursor: pointer;
-  align-self: flex-start;
-}
-
-.back-to-menu-button {
-  position: absolute; /* Position the button at the bottom */
-  bottom: 4rem;
-  left: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  text-align: center;
+  font-size: 14px;
   transition: background-color 0.2s;
 }
 
-.back-to-menu-button:hover {
+.theme-toggle-button:hover {
+  background-color: #0056b3;
+}
+
+.logout-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+/* BoardDetailsPage.css */
+.columns-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px;
+  overflow-x: auto;
+  margin-top: 16px; /* Add spacing between the header and columns */
+}
+
+.column {
+  min-width: 300px;
+  max-width: 300px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-column-container {
+  min-width: 200px;
+  max-width: 200px;
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.create-column-button {
+  width: 200px; /* Set a fixed width */
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  text-align: center; /* Center-align text */
+  margin: 0 auto; /* Center the button horizontally */
+}
+
+/* Dark theme styles */
+[data-theme="dark"] .board-details-page {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .board-title {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .theme-toggle-button {
+  background-color: #6c757d;
+}
+
+[data-theme="dark"] .theme-toggle-button:hover {
+  background-color: #5a6268;
+}
+
+[data-theme="dark"] .logout-button {
+  background-color: #dc3545;
+}
+
+[data-theme="dark"] .logout-button:hover {
   background-color: #c82333;
 }
